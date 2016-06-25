@@ -1,0 +1,16 @@
+---
+# tasks file for koha
+- include: yum.yml
+  sudo: yes
+- include: cpanm.yml
+  sudo: yes
+- include: mariadb.yml
+  sudo: yes
+- include: get.yml
+  sudo: yes
+- include: configure.yml
+  sudo: yes
+- include: install.yml
+  sudo: yes
+- include: services.yml
+  sudo: yes

@@ -1,0 +1,35 @@
+---
+- name: Make Install Koha
+  make:
+    chdir: /usr/share/koha-3.22.08
+    target: install
+- name: Set default SELinux context
+  command: semanage fcontext -a -t httpd_sys_content_t  "/usr/share/koha/intranet/htdocs(/.*)?"
+- name: Set default SELinux context
+  command: semanage fcontext -a -t httpd_sys_script_exec_t  "/usr/share/koha/intranet/cgi-bin(/.*)?"
+- name: Set default SELinux context
+  command: semanage fcontext -a -t httpd_sys_content_t  "/usr/share/koha/opac/htdocs(/.*)?"
+- name: Set default SELinux context
+  command: semanage fcontext -a -t httpd_sys_script_exec_t  "/usr/share/koha/opac/cgi-bin(/.*)?"
+- name: Restore SELinux context
+  command: sudo restorecon -R "/usr/share/koha"
+- name: Link Koha to Apache2
+  file:
+    src: /etc/koha/koha-httpd.conf
+    dest: /etc/httpd/conf.d/srv_koha.conf
+    state: link
+- name: Link Koha index control script to init.d
+  file:
+    src: /usr/share/koha/bin/koha-index-daemon-ctl.sh
+    dest: /etc/init.d/koha-index-daemon
+    state: link
+- name: Adjust control script for RHEL
+  replace:
+    dest: /usr/share/koha/bin/koha-index-daemon-ctl.sh
+    regexp: >
+      ^\. /lib/lsb/init-functions$
+    replace: |
+      . /lib/lsb/init-functions
+      . /etc/rc.d/init.d/functions
+      log_daemon_msg() { logger "$@"; }
+      log_end_msg() { [ $1 -eq 0 ] && RES=OK; logger ${RES:=FAIL}; }

@@ -1,0 +1,20 @@
+---
+- name: Create koha database
+  mysql_db:
+    login_host: "{{ mariadb_host }}"
+    login_port: "{{ mariadb_port }}"
+    login_user: "{{ db_user }}"
+    login_password: "{{ db_pw }}"
+    name: koha
+    state: present
+- name: Create kohaadmin user
+  mysql_user:
+    login_host: "{{ mariadb_host }}"
+    login_port: "{{ mariadb_port }}"
+    login_user: "{{ db_user }}"
+    login_password: "{{ db_pw }}"
+    name: "kohaadmin"
+    host: "*"
+    password: "{{ kohaadmin_pw }}"
+    priv: "koha.*:SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER,LOCK TABLES"
+    state: present

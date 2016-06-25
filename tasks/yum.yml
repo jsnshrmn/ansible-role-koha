@@ -1,0 +1,27 @@
+---
+- name: Add IndexData yum repository
+  yum_repository:
+    name: IndexData-Main.repo 
+    description: Index Data Main Repository
+    baseurl: http://ftp.indexdata.com/pub/yum/centos/7/main/$basearch
+    gpgkey: http://ftp.indexdata.com/pub/yum/centos/7/RPM-GPG-KEY-indexdata
+    gpgcheck: yes
+- name: Install yum packages
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - at
+    - expat-devel
+    - fribidi-devel
+    - GraphicsMagick
+    - GraphicsMagick-perl
+    - libtidyp-devel
+    - libuuid-devel
+    - libyaz5-devel
+    - MySQL-python
+    - perl-App-cpanminus
+    - perl-GD
+    - perl-Modern-Perl
+    - pexpect
+    - redhat-lsb

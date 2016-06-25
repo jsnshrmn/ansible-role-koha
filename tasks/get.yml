@@ -1,0 +1,30 @@
+---
+- name: Get checksum for Koha tarball
+  uri:
+    url: http://download.koha-community.org/koha-3.22.08.tar.gz.MD5
+    return_content: yes
+  register: checksum
+- name: Get Koha
+  get_url:
+    url: http://download.koha-community.org/koha-3.22.08.tar.gz
+    dest: /tmp/koha-3.22.08.tar.gz
+    checksum: "md5:{{ checksum.content[0:32] }}"
+- name: Unarchive Koha
+  unarchive:
+    src: /tmp/koha-3.22.08.tar.gz
+    dest: /usr/share
+    owner: root
+    group: wheel
+    copy: no
+- name: Get DejaVu True-Type Font
+  get_url:
+    url: http://sourceforge.net/projects/dejavu/files/dejavu/2.35/dejavu-fonts-ttf-2.35.zip
+    dest: /tmp/dejavu-fonts-ttf-2.35.zip
+    checksum: md5:d8b5214d35bcd2bfcb2cffa7795b351d
+- name: Unarchive DejaVu True-Type Font
+  unarchive:
+    src: /tmp/dejavu-fonts-ttf-2.35.zip
+    dest: /usr/share/fonts
+    owner: root
+    group: wheel
+    copy: no
