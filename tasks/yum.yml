@@ -23,5 +23,5 @@
     - perl-App-cpanminus
     - perl-GD
     - perl-Modern-Perl
-    - pexpect
+    - python-pip
     - redhat-lsb

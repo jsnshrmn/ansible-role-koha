@@ -2,6 +2,8 @@
 # tasks file for koha
 - include: yum.yml
   sudo: yes
+- include: pip.yml
+  sudo: yes
 - include: cpanm.yml
   sudo: yes
 - include: mariadb.yml

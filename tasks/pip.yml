@@ -1,0 +1,9 @@
+---
+- name: Pip Packages
+  pip:
+    name: "{{ item.name }}"
+    version: "{{ item.version }}"
+    state: present
+  with_items:
+    - name: pexpect
+    - version: 4.1.0
