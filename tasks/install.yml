@@ -13,11 +13,17 @@
   command: semanage fcontext -a -t httpd_sys_script_exec_t  "/usr/share/koha/opac/cgi-bin(/.*)?"
 - name: Restore SELinux context
   command: sudo restorecon -R "/usr/share/koha"
-- name: Link Koha to Apache2
-  file:
-    src: /etc/koha/koha-httpd.conf
-    dest: /etc/httpd/conf.d/srv_koha.conf
-    state: link
+- name: Apply Apache2 config for Koha
+  copy:
+    src: "{{ item }}"
+    dest: /etc/httpd/conf.d/
+    mode: 0644
+    owner: root
+    group: root
+  with_items:
+    - srv_api.conf
+    - srv_intranet.conf
+    - srv_opac.conf
 - name: Link Koha index control script to init.d
   file:
     src: /usr/share/koha/bin/koha-index-daemon-ctl.sh
