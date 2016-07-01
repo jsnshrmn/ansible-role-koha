@@ -39,6 +39,14 @@
       . /etc/rc.d/init.d/functions
       log_daemon_msg() { logger "$@"; }
       log_end_msg() { [ $1 -eq 0 ] && RES=OK; logger ${RES:=FAIL}; }
+- name: stunnel chroot dir
+  file:
+    path: /var/lib/stunnel
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+    recurse: yes
 - name: Add stunnel to systemd
   copy:
     src: "{{ item }}"
