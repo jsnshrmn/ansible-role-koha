@@ -39,3 +39,21 @@
       . /etc/rc.d/init.d/functions
       log_daemon_msg() { logger "$@"; }
       log_end_msg() { [ $1 -eq 0 ] && RES=OK; logger ${RES:=FAIL}; }
+- name: Add stunnel to systemd
+  copy:
+    src: "{{ item }}"
+    dest: /usr/lib/systemd/system/
+    mode: 0644
+    owner: root
+    group: root
+  with_items:
+    - stunnel.service
+- name: Apply stunnel config for Koha
+  template:
+    src: "{{ item }}"
+    dest: /etc/stunnel/stunnel.conf
+    mode: 0644
+    owner: root
+    group: root
+  with_items:
+    - stunnel.conf.j2

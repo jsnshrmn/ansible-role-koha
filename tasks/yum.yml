@@ -25,3 +25,4 @@
     - perl-Modern-Perl
     - python-pip
     - redhat-lsb
+    - stunnel

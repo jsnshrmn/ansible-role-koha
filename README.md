@@ -25,7 +25,9 @@ See defaults for the rest.
 Dependencies
 ------------
 
-Centos7, Apache2, a MariaDB/MySQL database
+Centos7, Apache2, a MariaDB/MySQL database.
+
+Specifically, the stunnel configuration expects access to the OULibraries.apache2 role vars.
 
 Example Playbook
 ----------------
