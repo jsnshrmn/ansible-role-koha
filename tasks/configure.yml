@@ -49,4 +49,4 @@
       'You will need a Memcached server running. \(no, yes\) \[no\] ': "no"
       'Path to DejaVu fonts\? \[/usr/share/fonts/truetype/ttf-dejavu\] ': /usr/share/fonts/dejavu-fonts-ttf-2.35
       'Would you like to run the database-dependent test suite\? \(no, yes\) \[no\] ': "no"
-  when: (koha_version | version_compare('3.22.00', '>=') 
+  when: koha_version | version_compare('3.22.00', '>=') 
