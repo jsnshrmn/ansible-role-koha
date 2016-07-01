@@ -1,0 +1,43 @@
+<acsconfig xmlns="http://openncip.org/acs-config/1.0/">
+<!-- above address gets nothing, it's just a namespace -->
+  <error-detect enabled="true" />
+
+  <server-params
+    min_servers='1'
+    min_spare_servers='0' 
+    log_file='Sys::Syslog'
+    syslog_ident='koha_sip'
+    syslog_facility='local6'
+  />
+
+  <listeners>
+    <service
+      port="8023/tcp"
+      transport="telnet"
+      protocol="SIP/2.00"
+      timeout="60" />
+
+    <service
+      port="127.0.0.1:6001/tcp"
+      transport="RAW" 
+      protocol="SIP/2.00"
+      timeout="60" />
+  </listeners>
+
+  <accounts>
+{% for login in koha_sip_logins %}
+      <login id="{{ login.id }}"  password="{{ login.password }}" delimiter="|" error-detect="enabled" institution="{{ login.institution }}" />
+{% endfor %}
+  </accounts>
+
+  <institutions>
+{% for institution in koha_sip_institutions %}
+    <institution id="{{ institution.id }}" implementation="{{ institution.implementation }}" parms="">
+          <policy checkin="true" renewal="true"
+                  status_update="false" offline="false"
+                  timeout="100"
+                  retries="5" />
+{% endfor %}
+    </institution>
+  </institutions>
+</acsconfig>

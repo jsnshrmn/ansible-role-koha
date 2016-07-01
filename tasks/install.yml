@@ -56,6 +56,15 @@
     group: root
   with_items:
     - stunnel.service
+- name: Apply SIP2 config for Koha
+  template:
+    src: "{{ item }}"
+    dest: /etc/koha/SIPconfig.xml
+    mode: 0644
+    owner: root
+    group: root
+  with_items:
+    - SIPconfig.xml.j2
 - name: Apply stunnel config for Koha
   template:
     src: "{{ item }}"
