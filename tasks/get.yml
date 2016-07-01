@@ -1,17 +1,17 @@
 ---
 - name: Get checksum for Koha tarball
   uri:
-    url: http://download.koha-community.org/koha-3.22.08.tar.gz.MD5
+    url: "{{ koha_download_url }}/koha-{{ koha_version }}.tar.gz.MD5"
     return_content: yes
   register: checksum
 - name: Get Koha
   get_url:
-    url: http://download.koha-community.org/koha-3.22.08.tar.gz
-    dest: /tmp/koha-3.22.08.tar.gz
+    url: "{{ koha_download_url }}/koha-{{ koha_version }}.tar.gz"
+    dest: "/tmp/koha-{{ koha_version }}.tar.gz"
     checksum: "md5:{{ checksum.content[0:32] }}"
 - name: Unarchive Koha
   unarchive:
-    src: /tmp/koha-3.22.08.tar.gz
+    src: "/tmp/koha-{{ koha_version }}.tar.gz"
     dest: /usr/share
     owner: root
     group: wheel

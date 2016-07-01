@@ -20,6 +20,8 @@ kohaadmin_user: kohaadmin
 kohaadmin_pw: kohaadmin
 ```
 
+See defaults for the rest.
+
 Dependencies
 ------------
 

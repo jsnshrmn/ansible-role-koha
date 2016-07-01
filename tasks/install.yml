@@ -1,7 +1,7 @@
 ---
 - name: Make Install Koha
   make:
-    chdir: /usr/share/koha-3.22.08
+    chdir: "/usr/share/koha-{{ koha_version }}"
     target: install
 - name: Set default SELinux context
   command: semanage fcontext -a -t httpd_sys_content_t  "/usr/share/koha/intranet/htdocs(/.*)?"

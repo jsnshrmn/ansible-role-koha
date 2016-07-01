@@ -1,2 +1,4 @@
 ---
 # defaults file for koha
+koha_download_url: http://download.koha-community.org
+koha_version: 3.22.08

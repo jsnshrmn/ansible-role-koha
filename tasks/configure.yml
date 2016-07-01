@@ -21,7 +21,7 @@
 - name: Configure Koha
   expect:
     command: 'perl Makefile.PL'
-    chdir: /usr/share/koha-3.22.08
+    chdir: "/usr/share/koha-{{ koha_version }}"
     echo: yes
     responses:
       'Installation mode \(dev, single, standard\) \[standard\] ': standard
