@@ -56,34 +56,22 @@
     group: root
   with_items:
     - stunnel.service
-- name: Apply SIP2 config for Koha
+- name: Apply templates
   template:
-    src: "{{ item }}"
-    dest: /etc/koha/SIPconfig.xml
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
     mode: 0644
     owner: root
     group: root
   with_items:
-    - SIPconfig.xml.j2
-- name: Apply stunnel config for Koha
-  template:
-    src: "{{ item }}"
-    dest: /etc/stunnel/stunnel.conf
-    mode: 0644
-    owner: root
-    group: root
-  with_items:
-    - stunnel.conf.j2
-- name: Apply postfix config for Koha
-  template:
-    src: "{{ item }}"
-    dest: /etc/postfix/
-    mode: 0644
-    owner: root
-    group: root
-  with_items:
-    - main.cf.j2
-    - sasl_passwd.j2
+    - src: main.cf.j2
+      dest: /etc/postfix/main.cf
+    - src: sasl_passwd.j2
+      dest: /etc/postfix/sasl_passwd
+    - src: SIPconfig.xml.j2
+      dest: /etc/koha/SIPconfig.xml
+    - src: stunnel.conf.j2
+      dest: /etc/stunnel/stunnel.conf
 - name: Generate SASL postmap
   command: postmap /etc/postfix/sasl_passwd
   args:
