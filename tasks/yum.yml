@@ -12,6 +12,7 @@
     state: latest
   with_items:
     - at
+    - cyrus-sasl-plain
     - expat-devel
     - fribidi-devel
     - GraphicsMagick

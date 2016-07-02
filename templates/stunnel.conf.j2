@@ -9,3 +9,8 @@ options = SINGLE_DH_USE
 [sip2]
 accept = 6443
 connect = 6001
+
+[smtp]
+accept = 127.0.0.1:1025
+client = yes
+connect = {{ smtp_host }}:{{ smtp_port }}
