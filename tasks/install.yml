@@ -82,7 +82,7 @@
     owner: root
     group: root
   with_items:
-    - postfix.main.cf.j2
+    - main.cf.j2
     - sasl_passwd.j2
 - name: Generate SASL postmap
   command: postmap /etc/postfix/sasl_passwd
