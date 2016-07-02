@@ -10,7 +10,7 @@
     mode: 0644
     owner: root
     group: root
-- name: Add ops scripts to path
+- name: Add Koha environment variables
   lineinfile: 
     state: present
     dest: /etc/profile.d/koha.sh
