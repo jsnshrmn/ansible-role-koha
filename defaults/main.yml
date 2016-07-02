@@ -9,3 +9,5 @@ koha_sip_logins:
 koha_sip_institutions:
   - id: MAIN
     implementation: ILS
+httpd_cert_path: /etc/pki/tls/certs
+httpd_key_path: /etc/pki/tls/private
