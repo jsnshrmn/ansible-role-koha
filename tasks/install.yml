@@ -88,4 +88,3 @@
   command: postmap /etc/postfix/sasl_passwd
   args:
     chdir: /etc/postfix
-    creates: /etc/postfix/sasl_passwd.db
