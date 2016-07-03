@@ -112,8 +112,8 @@
     group: root
   with_items:
     - src: koha-daily.cron
-      dest: /etc/cron.daily
+      dest: /etc/cron.daily/
     - src: koha-hourly.cron
-      dest: /etc/cron.hourly
+      dest: /etc/cron.hourly/
     - src: koha.cron
-      dest: /etc/cron.d
+      dest: /etc/cron.d/
