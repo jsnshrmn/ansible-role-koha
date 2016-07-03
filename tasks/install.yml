@@ -55,7 +55,7 @@
   file:
     path: /etc/rc.d/rc.local
     mode: 0755
-    state: exists
+    state: file
 - name: Adjust background index control script for RHEL
   replace:
     dest: /usr/share/koha/bin/koha-index-daemon-ctl.sh
