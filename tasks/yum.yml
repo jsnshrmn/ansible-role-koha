@@ -15,8 +15,10 @@
     - cyrus-sasl-plain
     - expat-devel
     - fribidi-devel
+    - gobject-introspection-devel
     - GraphicsMagick
     - GraphicsMagick-perl
+    - idzebra-2.0
     - libtidyp-devel
     - libuuid-devel
     - libyaz5-devel

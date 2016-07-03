@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+/usr/share/koha/bin/cronjobs/overdue_notices.pl -t
+/usr/share/koha/bin/cronjobs/fines.pl
+/usr/share/koha/bin/cronjobs/advance_notices.pl -c
+/usr/share/koha/bin/cronjobs/holds/cancel_expired_holds.pl >/dev/null 2>&1
+/usr/share/koha/bin/cronjobs/services_throttle.pl > /dev/null 2>&1
+/usr/share/koha/bin/cronjobs/cleanup_database.pl --sessions --zebraqueue 10 --list-invites
+/usr/share/koha/bin/cronjobs/cleanup_database.pl --mail
+/usr/share/koha/bin/cronjobs/holds/auto_unsuspend_holds.pl > /dev/null 2>&1

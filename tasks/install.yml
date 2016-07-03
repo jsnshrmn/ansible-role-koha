@@ -24,12 +24,39 @@
     - srv_api.conf
     - srv_intranet.conf
     - srv_opac.conf
+- name: Adjust paths in Koha Zebra config for RHEL
+  replace:
+    dest: "{{ item }}"
+    regexp: >
+      ^modulePath: /usr/lib/idzebra-2\.0/modules$
+    replace: >
+      modulePath: /usr/lib64/idzebra-2.0/modules
+  with_items:
+    - /etc/koha/zebradb/zebra-authorities.cfg
+    - /etc/koha/zebradb/zebra-authorities-dom.cfg
+    - /etc/koha/zebradb/zebra-biblios.cfg
+    - /etc/koha/zebradb/zebra-biblios-dom.cfg
 - name: Link Koha index control script to init.d
   file:
     src: /usr/share/koha/bin/koha-index-daemon-ctl.sh
     dest: /etc/init.d/koha-index-daemon
     state: link
-- name: Adjust control script for RHEL
+- name: Run Zebra Server at startup via rc.local
+  replace:
+    dest: /usr/share/koha/bin/koha-index-daemon-ctl.sh
+    regexp: >
+      ^touch /var/lock/subsys/local$
+    replace: |
+      touch /var/lock/subsys/local
+      export KOHA_CONF=/etc/koha/koha-conf.xml
+      export PERL5LIB=/usr/share/koha/lib
+      /usr/bin/zebrasrv-2.0 -D -T -p /var/run/zebrasrv.pid -f /etc/koha/koha-conf.xml -l /var/log/koha/zebrasrv.log
+- name: /etc/rc.d/rc.local is executable
+  file:
+    path: /etc/rc.d/rc.local
+    mode: 0755
+    state: exists
+- name: Adjust background index control script for RHEL
   replace:
     dest: /usr/share/koha/bin/koha-index-daemon-ctl.sh
     regexp: >
@@ -76,3 +103,17 @@
   command: postmap /etc/postfix/sasl_passwd
   args:
     chdir: /etc/postfix
+- name: Add cronjobs
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0755
+    owner: root
+    group: root
+  with_items:
+    - src: koha-daily.cron
+      dest: /etc/cron.daily
+    - src: koha-hourly.cron
+      dest: /etc/cron.hourly
+    - src: koha.cron
+      dest: /etc/cron.d

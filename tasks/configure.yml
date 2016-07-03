@@ -18,6 +18,7 @@
   with_items:
     - "export KOHA_CONF=/etc/koha/koha-conf.xml"
     - "export PERL5LIB=/usr/share/koha/lib"
+    - "alias EXPORT='export'"
 - name: Configure Koha
   expect:
     command: 'perl Makefile.PL'

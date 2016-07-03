@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:$PATH
+
+#*/5 * * * * root test -x /usr/sbin/koha-rebuild-zebra && koha-rebuild-zebra -q $(koha-list --enabled)
+*/5 * * * * root /usr/share/koha/bin/cronjobs/process_message_queue.pl

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+/usr/share/koha/bin/cronjobs/holds/build_holds_queue.pl

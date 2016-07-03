@@ -68,6 +68,7 @@
     - "HTML::Scrubber"
     - "HTTPD::Bench::ApacheBench"
     - "HTTP::OAI"
+    - "Koha::Contrib::Tamil"
     - "Library::CallNumber::LC"
     - "Lingua::Ispell"
     - "Lingua::Stem"
