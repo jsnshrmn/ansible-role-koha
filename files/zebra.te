@@ -1,0 +1,11 @@
+
+module zebra 1.0;
+
+require {
+	type unconfined_t;
+	type httpd_sys_script_t;
+	class unix_stream_socket connectto;
+}
+
+#============= httpd_sys_script_t ==============
+allow httpd_sys_script_t unconfined_t:unix_stream_socket connectto;

@@ -130,3 +130,32 @@
   with_items:
     - src: koha.cron
       dest: /etc/cron.d/
+# Credits: http://jensd.be/587/linux/tips-tricks-for-ansible
+- name: SELinux, check loaded modules
+  shell: semodule -l
+  register: selinuxmodules
+  always_run: yes
+  changed_when: False
+- name: Copy SELinux Type Enforcement for Zebra
+  copy:
+    src: zebra.te
+    dest: /tmp/zebra.te
+    mode: 0644
+    owner: root
+    group: root
+  when: "selinuxmodules.stdout.find('zebra') == -1"
+- name: Create SELinux module for Zebra from type enforcement
+  command: checkmodule -M -m -o zebra.mod zebra.te
+  args:
+    chdir: /tmp
+  when: "selinuxmodules.stdout.find('zebra') == -1"
+- name: Compile SELinux module for Zebra
+  command: semodule_package -m zebra.mod -o zebra.pp
+  args:
+    chdir: /tmp
+  when: "selinuxmodules.stdout.find('zebra') == -1"
+- name: Install SELinux module for Zebra
+  command: semodule -i zebra_custom.pp
+  args:
+    chdir: /tmp
+  when: "selinuxmodules.stdout.find('zebra') == -1"
