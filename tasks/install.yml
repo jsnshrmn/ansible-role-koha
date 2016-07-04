@@ -52,7 +52,7 @@
     regexp: >
       ^touch /var/lock/subsys/local$
     replace: |
-      touch /var/lock/subsys/local
+      touch /var/lock/subsys/local # modified by ansible
       export KOHA_CONF=/etc/koha/koha-conf.xml
       export PERL5LIB=/usr/share/koha/lib
       /usr/bin/zebrasrv-2.0 -D -T -p /var/run/zebrasrv.pid -f /etc/koha/koha-conf.xml -l /var/log/koha/zebrasrv.log

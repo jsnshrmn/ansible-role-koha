@@ -1,6 +1,11 @@
 ---
 - name: Start Zebra
-  command: bash -c ". /etc/rc.d/rc.local"
+  command: /usr/bin/zebrasrv-2.0 -D -T -p /var/run/zebrasrv.pid -f /etc/koha/koha-conf.xml -l /var/log/koha/zebrasrv.log
+  args:
+    creates: /var/run/zebrasrv.pid
+  environment:
+    KOHA_CONF: /etc/koha/koha-conf.xml
+    PERL5LIB: /usr/share/koha/lib
 - name: Build Zebra indices
   command: ./rebuild_zebra.pl -b -a -r -v
   args:
