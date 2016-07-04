@@ -43,7 +43,7 @@
     state: link
 - name: Run Zebra Server at startup via rc.local
   replace:
-    dest: /usr/share/koha/bin/koha-index-daemon-ctl.sh
+    dest: /etc/rc.d/rc.local
     regexp: >
       ^touch /var/lock/subsys/local$
     replace: |

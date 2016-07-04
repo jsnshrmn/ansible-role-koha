@@ -1,6 +1,6 @@
 ---
 - name: Start Zebra
-  command: . /etc/rc.d/rc.local
+  command: bash -c ". /etc/rc.d/rc.local"
 - name: Restart Services
   service:
     name: "{{ item }}"
