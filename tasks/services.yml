@@ -1,6 +1,16 @@
 ---
 - name: Start Zebra
   command: bash -c ". /etc/rc.d/rc.local"
+- name: Build Zebra indices
+  command: ./rebuild_zebra.pl -b -a -r -v
+  args:
+    chdir: /usr/share/koha/bin/migration_tools/
+    creates: /tmp/zebra_koha/rebuild/rebuild..LCK
+  environment:
+    KOHA_CONF: /etc/koha/koha-conf.xml
+    PERL5LIB: /usr/share/koha/lib
+  become: true
+  become_user: koha
 - name: Restart Services
   service:
     name: "{{ item }}"
