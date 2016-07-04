@@ -1,5 +1,5 @@
 
-module zebra 1.0;
+module zebra_local 1.0;
 
 require {
 	type unconfined_t;
