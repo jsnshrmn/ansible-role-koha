@@ -138,24 +138,24 @@
   changed_when: False
 - name: Copy SELinux Type Enforcement for Zebra
   copy:
-    src: zebra.te
-    dest: /tmp/zebra.te
+    src: zebra_local.te
+    dest: /tmp/zebra_local.te
     mode: 0644
     owner: root
     group: root
-  when: "selinuxmodules.stdout.find('zebra') == -1"
+  when: "selinuxmodules.stdout.find('zebra_local') == -1"
 - name: Create SELinux module for Zebra from type enforcement
-  command: checkmodule -M -m -o zebra.mod zebra.te
+  command: checkmodule -M -m -o zebra_local.mod zebra_local.te
   args:
     chdir: /tmp
-  when: "selinuxmodules.stdout.find('zebra') == -1"
+  when: "selinuxmodules.stdout.find('zebra_local') == -1"
 - name: Compile SELinux module for Zebra
-  command: semodule_package -m zebra.mod -o zebra.pp
+  command: semodule_package -m zebra_local.mod -o zebra_local.pp
   args:
     chdir: /tmp
-  when: "selinuxmodules.stdout.find('zebra') == -1"
+  when: "selinuxmodules.stdout.find('zebra_local') == -1"
 - name: Install SELinux module for Zebra
-  command: semodule -i zebra_custom.pp
+  command: semodule -i zebra_local.pp
   args:
     chdir: /tmp
-  when: "selinuxmodules.stdout.find('zebra') == -1"
+  when: "selinuxmodules.stdout.find('zebra_local') == -1"
