@@ -108,7 +108,7 @@
   command: postmap /etc/postfix/sasl_passwd
   args:
     chdir: /etc/postfix
-- name: Add cronjobs
+- name: Add anacron jobs
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -120,5 +120,13 @@
       dest: /etc/cron.daily/
     - src: koha-hourly.cron
       dest: /etc/cron.hourly/
+- name: Add cron jobs
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0644
+    owner: root
+    group: root
+  with_items:
     - src: koha.cron
       dest: /etc/cron.d/
