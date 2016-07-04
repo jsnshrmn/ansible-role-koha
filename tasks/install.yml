@@ -24,6 +24,11 @@
     - srv_api.conf
     - srv_intranet.conf
     - srv_opac.conf
+- name: Symlink zebraidx for RHEL
+  file:
+    src: /usr/bin/zebraidx-2.0
+    dest: /usr/bin/zebraidx
+    state: link
 - name: Adjust paths in Koha Zebra config for RHEL
   replace:
     dest: "{{ item }}"
