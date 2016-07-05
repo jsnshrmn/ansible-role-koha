@@ -130,6 +130,11 @@
   with_items:
     - src: koha.cron
       dest: /etc/cron.d/
+- name: Set SELinux exceptions for apache
+  command: "setsebool -P {{ item }} on"
+  with_items:
+  - httpd_can_network_connect
+  - httpd_can_sendmail
 # Credits: http://jensd.be/587/linux/tips-tricks-for-ansible
 - name: SELinux, check loaded modules
   shell: semodule -l
