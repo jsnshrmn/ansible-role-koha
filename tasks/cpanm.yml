@@ -52,6 +52,7 @@
     - "DateTime::Set"
     - "DateTime::TimeZone"
     - "DBD::Mock"
+    - "DBD::mysql"
     - "DBD::SQLite2"
     - "DBIx::Class::Schema::Loader"
     - "DBIx::RunSQL"

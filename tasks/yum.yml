@@ -23,6 +23,7 @@
     - libuuid-devel
     - libyaz5-devel
     - mariadb
+    - mariadb-devel
     - MySQL-python
     - perl-App-cpanminus
     - perl-GD
