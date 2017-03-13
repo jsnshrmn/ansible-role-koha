@@ -55,7 +55,14 @@
       touch /var/lock/subsys/local # modified by ansible
       export KOHA_CONF=/etc/koha/koha-conf.xml
       export PERL5LIB=/usr/share/koha/lib
-      /usr/bin/zebrasrv-2.0 -D -T -p /var/run/zebrasrv.pid -f /etc/koha/koha-conf.xml -l /var/log/koha/zebrasrv.log
+      mkdir -p /var/run/koha/zebradb
+      chown -R koha:koha /var/run/koha
+      mkdir -p /var/lock/koha/zebradb/authorities
+      mkdir -p /var/lock/koha/zebradb/biblios
+      mkdir -p /var/lock/koha/zebradb/rebuild
+      chown -R koha:koha /var/lock/koha/zebradb
+      sudo -u koha /usr/bin/zebrasrv-2.0 -D -T -p /var/run/koha/zebrasrv.pid -f /etc/koha/koha-conf.xml -l /var/log/koha/zebrasrv.log
+      sudo -u koha bash -c "export KOHA_CONF=/etc/koha/koha-conf.xml ; export PERL5LIB=/usr/share/koha/lib ; cd /usr/share/koha/lib ; perl -IC4/SIP/ -MILS C4/SIP/SIPServer.pm /etc/koha/SIPconfig.xml" &
 - name: /etc/rc.d/rc.local is executable
   file:
     path: /etc/rc.d/rc.local
@@ -131,7 +138,7 @@
     - src: koha.cron
       dest: /etc/cron.d/
 - name: Set SELinux exceptions for apache
-  command: "setsebool -P {{ item }} on"
+  command: "setsebool -P {{ item }} 1"
   with_items:
   - httpd_can_network_connect
   - httpd_can_sendmail

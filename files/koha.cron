@@ -3,5 +3,5 @@
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:$PATH
 
-#*/5 * * * * root test -x /usr/sbin/koha-rebuild-zebra && koha-rebuild-zebra -q $(koha-list --enabled)
+*/5 * * * * root sudo -u koha bash -c "export KOHA_CONF=/etc/koha/koha-conf.xml ; export PERL5LIB=/usr/share/koha/lib ; cd /usr/share/koha/lib ; perl /usr/share/koha/bin/migration_tools/rebuild_zebra.pl -b -a -z -v"
 */5 * * * * root /usr/share/koha/bin/cronjobs/process_message_queue.pl

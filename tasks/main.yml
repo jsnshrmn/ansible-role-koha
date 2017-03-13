@@ -1,18 +1,18 @@
 ---
 # tasks file for koha
 - include: yum.yml
-  sudo: yes
+  become: true
 - include: pip.yml
-  sudo: yes
+  become: true
 - include: cpanm.yml
-  sudo: yes
+  become: true
 - include: mariadb.yml
-  sudo: yes
+  become: true
 - include: get.yml
-  sudo: yes
+  become: true
 - include: configure.yml
-  sudo: yes
+  become: true
 - include: install.yml
-  sudo: yes
+  become: true
 - include: services.yml
-  sudo: yes
+  become: true
