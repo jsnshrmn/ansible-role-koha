@@ -24,5 +24,4 @@
   with_items:
     - httpd
     - koha-index-daemon
-    - stunnel
     - postfix
