@@ -78,23 +78,6 @@
       . /etc/rc.d/init.d/functions
       log_daemon_msg() { logger "$@"; }
       log_end_msg() { [ $1 -eq 0 ] && RES=OK; logger ${RES:=FAIL}; }
-- name: stunnel chroot dir
-  file:
-    path: /var/lib/stunnel
-    state: directory
-    mode: 0755
-    owner: root
-    group: root
-    recurse: yes
-- name: Add stunnel to systemd
-  copy:
-    src: "{{ item }}"
-    dest: /usr/lib/systemd/system/
-    mode: 0644
-    owner: root
-    group: root
-  with_items:
-    - stunnel.service
 - name: Apply templates
   template:
     src: "{{ item.src }}"
@@ -103,18 +86,8 @@
     owner: root
     group: root
   with_items:
-    - src: main.cf.j2
-      dest: /etc/postfix/main.cf
-    - src: sasl_passwd.j2
-      dest: /etc/postfix/sasl_passwd
     - src: SIPconfig.xml.j2
       dest: /etc/koha/SIPconfig.xml
-    - src: stunnel.conf.j2
-      dest: /etc/stunnel/stunnel.conf
-- name: Generate SASL postmap
-  command: postmap /etc/postfix/sasl_passwd
-  args:
-    chdir: /etc/postfix
 - name: Add anacron jobs
   copy:
     src: "{{ item.src }}"
