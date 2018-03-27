@@ -1,6 +1,7 @@
 - name: Initial CPAN packages
   cpanm:
     name: "{{ item }}"
+  retries: 2
   with_items:
     - "CGI"
     - "Env"
@@ -15,6 +16,7 @@
 - name: CPAN packages used for testing
   cpanm:
     name: "{{ item }}"
+  retries: 2
   with_items:
     - "Test::DBIx::Class"
     - "Test::Deep"
@@ -25,6 +27,7 @@
 - name: Even more CPAN packages
   cpanm:
     name: "{{ item }}"
+  retries: 2
   with_items:
     - "Algorithm::CheckDigits"
     - "AnyEvent"
@@ -133,12 +136,14 @@
   cpanm:
     name: "{{ item }}"
     notest: yes
+  retries: 2
   with_items:
     - "Text::Bidi"
 - name: CPAN packages for Koha <= 3.16.00
   cpanm:
     name: "{{ item }}"
     notest: yes
+  retries: 2
   with_items:
     - "Data::Pagination"
     - "Data::Paginator"
