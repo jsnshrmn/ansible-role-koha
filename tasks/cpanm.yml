@@ -81,18 +81,3 @@
     notest: yes
   with_items:
     - "Text::Bidi"
-- name: CPAN packages for Koha <= 3.16.00
-  cpanm:
-    name: "{{ item }}"
-    notest: yes
-  with_items:
-    - "Data::Pagination"
-    - "Data::Paginator"
-    - "DateTime::Format::DateParse"
-    - "JSON::Any"
-    - "MooseX::Storage"
-    - "Readonly"
-    - "Readonly::XS"
-    - "String::RewritePrefix"
-    - "Time::Progress"
-  when: koha_version | version_compare('3.16.00', '==')

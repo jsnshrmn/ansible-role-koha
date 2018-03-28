@@ -50,36 +50,4 @@
       'You will need a Memcached server running. \(no, yes\) \[no\] ': "no"
       'Path to DejaVu fonts\? \[/usr/share/fonts/truetype/ttf-dejavu\] ': /usr/share/fonts/dejavu-fonts-ttf-2.35
       'Would you like to run the database-dependent test suite\? \(no, yes\) \[no\] ': "no"
-  when: koha_version | version_compare('3.22.00', '>=') 
-- name: Configure Koha 3.16.00 
-  expect:
-    command: 'perl Makefile.PL'
-    chdir: "/usr/share/koha-{{ koha_version }}"
-    echo: yes
-    responses:
-      'Installation mode \(dev, single, standard\) \[standard\] ': standard
-      'Base installation directory \[/usr/share/koha\] ': /usr/share/koha
-      'User account \[koha\] ': koha
-      'Group \[koha\] ': koha
-      'DBMS to use \(Pg, mysql\) \[mysql\] ': mysql
-      'Database server \[localhost\] ': "{{ mariadb_host }}"
-      'DMBS \[3306\] ': "{{ mariadb_port | string }}"
-      'used by Koha \[koha\] ': koha
-      'used by Koha \[kohaadmin\] ': "{{ kohaadmin_user }}"
-      'database to be used by Koha \[katikoan\] ': "{{ kohaadmin_pw }}"
-      'MARC format for Zebra indexing \(marc21, normarc, unimarc\) \[marc21\] ': marc21
-      'Primary language for Zebra indexing \(en, es, fr, nb, ru, uk\) \[en\] ': en
-      'Bibliographic indexing mode \(dom, grs1\) \[dom\] ': dom
-      'Authorities indexing mode \(dom, grs1\) \[dom\] ': dom
-      'characters. \(chr, icu\) \[chr\] ': icu
-      'Please specify Zebra database user \[kohauser\] ': kohauser
-      'Please specify the Zebra database password \[zebrastripes\] ': zebrastripes
-      'Install the SRU configuration files\? \(no, yes\) \[yes\] ': "yes"
-      'SRU Database host\? \[localhost\] ': localhost
-      'SRU port for bibliographic data\? \[9998\] ': "9998"
-      'SRU port for authority data\? \[9999\] ': "9999"
-      'Install the PazPar2 configuration files\? \[no\] ': "no"
-      'You will need a Memcached server running. \(no, yes\) \[no\] ': "no"
-      'Path to DejaVu fonts\? \[/usr/share/fonts/truetype/ttf-dejavu\] ': /usr/share/fonts/dejavu-fonts-ttf-2.35
-      'Would you like to run the database-dependent test suite\? \(no, yes\) \[no\] ': "no"
-  when: koha_version | version_compare('3.16.00', '==') 
+  when: koha_version | version_compare('3.22.08', '>=')

@@ -29,7 +29,7 @@ See defaults for the rest.
 Dependencies
 ------------
 
-[Centos7](https://github.com/OULibraries/ansible-role-centos7), [Postfix](https://github.com/OULibraries/ansible-role-postfix-mta), [Apache2](https://github.com/OULibraries/ansible-role-apache2), a [MariaDB/MySQL database](https://github.com/OULibraries/ansible-role-mariadb).
+[Centos7](https://github.com/OULibraries/ansible-role-centos7), [Postfix](https://github.com/OULibraries/ansible-role-postfix-mta), [Apache2](https://github.com/USAO/ansible-role-apache2), a [MariaDB/MySQL database](https://github.com/USAO/ansible-role-mariadb).
 
 Example Playbook
 ----------------
