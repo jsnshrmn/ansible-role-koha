@@ -24,8 +24,66 @@
     - mariadb
     - mariadb-devel
     - MySQL-python
+    - perl-Algorithm-CheckDigits
+    - perl-AnyEvent
+    - perl-AnyEvent-HTTP
     - perl-App-cpanminus
+    - perl-Archive-Extract
+    - perl-CGI-Session
+    - perl-Cache-FastMmap
+    - perl-Class-Accessor
+    - perl-Class-Factory-Util
+    - perl-CPAN-Meta-Check
+    - perl-DBD-Mock
+    - perl-DBIx-RunSQL
+    - perl-Data-ICal
+    - perl-Date-Calc
+    - perl-Date-Manip
+    - perl-DateTime-Event-ICal
+    - perl-DateTime-Format-MySQL
+    - perl-DateTime-Set
+    - perl-DateTime-TimeZone
+    - perl-Devel-Cover
+    - perl-Email-Valid
+    - perl-Exception-Class
+    - perl-ExtUtils-PkgConfig
+    - perl-File-Slurp
+    - perl-Font-TTF
     - perl-GD
+    - perl-HTML-Scrubber
+    - perl-JSON
+    - perl-LWP-Protocol-https
+    - perl-Lingua-Stem-Snowball
+    - perl-Locale-Maketext-Lexicon
+    - perl-Locale-PO
+    - perl-Log-Log4perl
+    - perl-MIME-Lite
+    - perl-Mail-Sendmail
     - perl-Modern-Perl
+    - perl-Module-Install
+    - perl-Mojolicious
+    - perl-Net-Server
+    - perl-Number-Format
+    - perl-PDF-API2
+    - perl-SOAP-Lite
+    - perl-String-Random
+    - perl-Test-Deep
+    - perl-Test-MockModule
+    - perl-Test-MockObject
+    - perl-Test-Warn
+    - perl-Test-YAML-Valid
+    - perl-Text-CSV
+    - perl-Text-CSV_XS
+    - perl-Text-Iconv
+    - perl-UNIVERSAL-can
+    - perl-UNIVERSAL-require
+    - perl-XML-Dumper
+    - perl-XML-LibXSLT
+    - perl-XML-RSS
+    - perl-XML-SAX-Writer
+    - perl-XML-Simple
+    - perl-XML-Writer
+    - perl-YAML-LibYAML
+    - perl-YAML-Syck
     - python-pip
     - redhat-lsb
