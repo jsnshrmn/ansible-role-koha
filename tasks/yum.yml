@@ -1,4 +1,12 @@
 ---
+- name: Add Shibboleth yum repository
+  yum_repository:
+    name: Shibboleth-Main.repo 
+    description: Index Data Main Repository
+    mirrorlist: https://shibboleth.net/cgi-bin/mirrorlist.cgi/CentOS_7
+    gpgkey: https://downloadcontent.opensuse.org/repositories/security:/shibboleth/CentOS_7/repodata/repomd.xml.key
+    gpgcheck: yes
+
 - name: Add IndexData yum repository
   yum_repository:
     name: IndexData-Main.repo 
@@ -6,6 +14,7 @@
     baseurl: http://ftp.indexdata.com/pub/yum/centos/7/main/$basearch
     gpgkey: http://ftp.indexdata.com/pub/yum/centos/7/RPM-GPG-KEY-indexdata
     gpgcheck: yes
+
 - name: Install yum packages
   yum:
     name: "{{ item }}"
@@ -87,3 +96,4 @@
     - perl-YAML-Syck
     - python-pip
     - redhat-lsb
+    - shibboleth.x86_64
